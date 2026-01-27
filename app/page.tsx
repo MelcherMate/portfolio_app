@@ -1,4 +1,4 @@
-import "./globals.css"
+import Image from "next/image";
 import {
   FaCalculator,
   FaCss3,
@@ -13,7 +13,7 @@ import {
   FaReact,
 } from "react-icons/fa";
 import { SiMongodb } from "react-icons/si";
-import profileImage from "../../../public/img/profNoBg.png";
+import profileImage from "../public/img/profNoBg.png";
 
 function Home() {
   return (
@@ -42,15 +42,15 @@ function Home() {
 
           <div className="introSection">
             <div className="introImageWrapper">
-              <img src={profileImage} className="introImage" />
+              <Image src={profileImage} alt="Máté Melcher profile picture" className="introImage" />
             </div>
             <p className="introText">
-              Hi, I'm Máté Melcher. I'm a passionate engineer, amateur
+              Hi, I&apos;m Máté Melcher. I&apos;m a passionate engineer, amateur
               programmer, and macroeconomics enthusiast. I believe engineering
-              isn't just about invention—it's about creating solutions that
+              isn&apos;t just about invention—it&apos;s about creating solutions that
               improve lives and make economic sense.<br></br> After working a
               year as an economist at a multinational company, I realized how
-              much I missed engineering. Now, I'm studying Environmental,
+              much I missed engineering. Now, I&apos;m studying Environmental,
               Process & Energy Engineering at MCI Innsbruck, focusing on solving
               real-world challenges in heat tranfer management.
             </p>
