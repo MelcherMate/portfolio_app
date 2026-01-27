@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description:
     "Portfolio website of Mate Melcher, Bioporcess Engineer and Economist and Self-taught Software Developer.",
   icons: {
-    icon: "../public/svg/new_logo.svg",
+    icon: "../public/img/mountain_logo.png",
   },
 };
 
