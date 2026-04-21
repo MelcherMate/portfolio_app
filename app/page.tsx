@@ -56,8 +56,8 @@ function Home() {
                   <Image
                     src={profileImage}
                     alt="Máté Melcher"
-                    width={1920}
-                    height={1080}
+                    width={5712}
+                    height={3213}
                     priority
                     quality={100}
                     sizes="(max-width: 639px) 256px, 288px"
