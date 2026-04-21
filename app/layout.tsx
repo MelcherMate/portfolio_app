@@ -13,11 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Portfolio - Mate Melcher",
+  title: "Portfolio — Máté Melcher",
   description:
-    "Portfolio website of Mate Melcher, Bioporcess Engineer and Economist and Self-taught Software Developer.",
+    "Portfolio of Máté Melcher — engineer, economist, and self-taught software developer.",
   icons: {
-    icon: "../public/img/mountain_logo.png",
+    icon: "/img/mountain_logo.png",
   },
 };
 
@@ -27,9 +27,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-surface-1">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased text-fg bg-transparent text-[15px] sm:text-base`}
       >
         {children}
       </body>
