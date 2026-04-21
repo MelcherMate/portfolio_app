@@ -15,7 +15,7 @@ import {
   FaReact,
 } from "react-icons/fa";
 import { SiMongodb } from "react-icons/si";
-import profileImage from "../public/img/IMG_6771.jpg";
+import profileImage from "../public/img/IMG_6771.png";
 import bioverseeScreenshot from "../public/img/bioversee.png";
 import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
@@ -56,10 +56,12 @@ function Home() {
                   <Image
                     src={profileImage}
                     alt="Máté Melcher"
-                    width={144}
-                    height={144}
+                    width={1920}
+                    height={1080}
                     priority
-                    className="h-full w-full origin-[26%_32%] scale-[1.34] object-cover object-[26%_32%] sm:origin-[24%_30%] sm:scale-[1.30] sm:object-[24%_30%]"
+                    quality={100}
+                    sizes="(max-width: 639px) 256px, 288px"
+                    className="h-full w-full object-cover object-[32%_34%] sm:object-[30%_32%]"
                   />
                 </div>
                 <div className="min-w-0 flex-1 text-center sm:text-left">
