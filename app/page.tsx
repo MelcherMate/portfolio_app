@@ -3,6 +3,7 @@ import {
   FaCalculator,
   FaCss3,
   FaDatabase,
+  FaEnvelope,
   FaFacebook,
   FaFlask,
   FaGithub,
@@ -10,6 +11,7 @@ import {
   FaHtml5,
   FaInstagram,
   FaLinkedin,
+  FaMapMarkerAlt,
   FaMicrosoft,
   FaPython,
   FaReact,
@@ -45,64 +47,89 @@ function Home() {
       </a>
 
       <main id="main">
-        <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
+        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
           <article
             id="top"
-            className="rounded-2xl border border-border/90 bg-surface-1/95 px-5 py-8 shadow-[0_28px_64px_-32px_rgba(35,95,115,0.14)] sm:rounded-[2rem] sm:px-10 sm:py-10"
+            className="rounded-2xl border border-border/90 bg-surface-1/95 px-5 py-6 shadow-[0_28px_64px_-32px_rgba(40,40,40,0.16)] sm:rounded-[2rem] sm:px-10 sm:py-7"
           >
-            <header className="border-b border-border/70 pb-8">
-              <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start sm:gap-8">
-                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-3xl border border-border/80 bg-surface-2 shadow-[0_12px_28px_-14px_rgba(45,110,130,0.18)] ring-4 ring-white/90 sm:h-36 sm:w-36">
-                  <Image
-                    src={profileImage}
-                    alt="Máté Melcher"
-                    width={5712}
-                    height={3213}
-                    priority
-                    quality={100}
-                    sizes="(max-width: 639px) 256px, 288px"
-                    className="h-full w-full object-cover object-[32%_34%] sm:object-[30%_32%]"
-                  />
+            <header className="border-b border-border/70 pb-6">
+              <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[9rem_1fr_10rem] md:gap-5">
+                <div className="flex items-center justify-center pr-1">
+                  <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-3xl border border-border/80 bg-surface-2 shadow-[0_12px_28px_-14px_rgba(40,40,40,0.2)] ring-4 ring-white/90 sm:h-32 sm:w-32">
+                    <Image
+                      src={profileImage}
+                      alt="Máté Melcher"
+                      width={5712}
+                      height={3213}
+                      priority
+                      quality={100}
+                      sizes="(max-width: 639px) 256px, 288px"
+                      className="h-full w-full object-cover object-[32%_34%] sm:object-[30%_32%]"
+                    />
+                  </div>
                 </div>
-                <div className="min-w-0 flex-1 text-center sm:text-left">
-                  <h1 className="text-3xl font-semibold tracking-tight text-fg sm:text-4xl">
+                <div className="flex min-w-0 flex-col items-center justify-center px-2 text-center md:px-4">
+                  <h1 className="text-3xl font-semibold tracking-tight text-fg sm:text-[2.1rem]">
                     Máté Melcher
                   </h1>
-                  <p className="mt-2 text-sm font-medium text-accent sm:text-base">
-                    Environmental &amp; process engineering · Software ·
-                    Economics
-                  </p>
-                  <ul className="mt-4 flex flex-col gap-1.5 text-sm text-fg-muted sm:mt-3">
-                    <li>Innsbruck, Austria</li>
-                    <li>
-                      <a
-                        href="mailto:melchermate28@gmail.com"
-                        className="text-fg underline decoration-border underline-offset-2 transition-colors hover:text-accent hover:decoration-accent"
-                      >
+                  <div className="mt-2 text-center">
+                    <div className="role-rotator" aria-label="Current study track">
+                      <span>Process Engineer MSc</span>
+                      <span>Biochemical Engineer BSc</span>
+                      <span>Marketing &amp; Commerce BSc</span>
+                    </div>
+                  </div>
+                  <ul className="mt-3 space-y-1.5 text-sm text-fg">
+                    <li className="flex items-center justify-center gap-2">
+                      <FaMapMarkerAlt className="text-xs text-fg-subtle" aria-hidden />
+                      <span>Innsbruck, Austria</span>
+                    </li>
+                    <li className="flex items-center justify-center gap-2">
+                      <FaEnvelope className="text-xs text-fg-subtle" aria-hidden />
+                      <a href="mailto:melchermate28@gmail.com" className="text-fg">
                         melchermate28@gmail.com
                       </a>
                     </li>
-                    <li className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-start">
-                      <a
-                        href="https://www.linkedin.com/in/mate-melcher-5a16601bb/"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 font-medium text-fg transition-colors hover:text-glacier"
-                      >
-                        <FaLinkedin className="text-base" aria-hidden />
-                        LinkedIn
-                      </a>
-                      <a
-                        href="https://github.com/MelcherMate"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 font-medium text-fg transition-colors hover:text-glacier"
-                      >
-                        <FaGithub className="text-base" aria-hidden />
-                        GitHub
-                      </a>
-                    </li>
                   </ul>
+                </div>
+
+                <div className="grid grid-cols-4 place-items-center gap-3 md:grid-cols-2">
+                  <a
+                    href="https://www.linkedin.com/in/mate-melcher-5a16601bb/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="LinkedIn"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                  >
+                    <FaLinkedin className="text-2xl" aria-hidden />
+                  </a>
+                  <a
+                    href="https://github.com/MelcherMate"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="GitHub"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                  >
+                    <FaGithub className="text-2xl" aria-hidden />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/mmate_skiing/"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Instagram"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                  >
+                    <FaInstagram className="text-2xl" aria-hidden />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100080118015753"
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label="Facebook"
+                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                  >
+                    <FaFacebook className="text-2xl" aria-hidden />
+                  </a>
                 </div>
               </div>
             </header>
@@ -131,7 +158,7 @@ function Home() {
               <div className="mt-2 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 sm:gap-5">
                 <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
                   <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
-                    <FaFlask className="text-lg text-accent" aria-hidden />
+                    <FaFlask className="text-lg text-fg" aria-hidden />
                     Bioversee
                   </h3>
                   <ProjectImageCarousel
@@ -158,7 +185,7 @@ function Home() {
                     href="https://www.bioversee.com"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-fg transition-opacity hover:opacity-90"
                   >
                     Visit site
                   </a>
@@ -166,7 +193,7 @@ function Home() {
 
                 <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
                   <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
-                    <FaBolt className="text-lg text-accent" aria-hidden />
+                    <FaBolt className="text-lg text-fg" aria-hidden />
                     Smart Grid Simulator
                   </h3>
                   <ProjectImageCarousel
@@ -192,7 +219,7 @@ function Home() {
                     href="https://smartgridapp.vercel.app/"
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90"
+                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-fg transition-opacity hover:opacity-90"
                   >
                     Visit site
                   </a>
@@ -209,7 +236,7 @@ function Home() {
                 <div>
                   <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
                     <h3 className="font-semibold leading-snug text-fg">
-                      Talent Program Intern — K&amp;H Bank (Karrierstart!)
+                      Talent Program Intern — K&amp;H Bank
                     </h3>
                     <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
                       2024 – 2025
@@ -344,50 +371,20 @@ function Home() {
                   { icon: FaCalculator, label: "MATLAB" },
                   { icon: FaDatabase, label: "PostgreSQL" },
                   { icon: FaGithub, label: "Git & GitHub" },
-                  { icon: FaFlask, label: "ChemCad" },
+                  { icon: FaFlask, label: "Aspen Plus" },
+                  { icon: FaMicrosoft, label: "Shapr3D" },
+                  { icon: FaReact, label: "Blender" },
+                  { icon: FaDatabase, label: "Bambu Studio" },
                   { icon: FaMicrosoft, label: "Microsoft 365" },
                 ].map((s) => (
                   <li key={s.label}>
-                    <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-surface-2/80 px-3 py-1.5 text-xs text-fg shadow-sm">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-border/70 bg-surface-2/45 px-3 py-1.5 text-xs font-medium text-fg">
                       <s.icon
-                        className="text-sm text-accent"
+                        className="text-sm text-fg"
                         aria-hidden
                       />
                       {s.label}
                     </span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-
-            <section
-              id="social"
-              className="scroll-mt-6 border-b border-border/60 py-8"
-            >
-              <SectionTitle>Social</SectionTitle>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {[
-                  {
-                    href: "https://www.instagram.com/mmate_skiing/",
-                    icon: FaInstagram,
-                    label: "Instagram",
-                  },
-                  {
-                    href: "https://www.facebook.com/profile.php?id=100080118015753",
-                    icon: FaFacebook,
-                    label: "Facebook",
-                  },
-                ].map((item) => (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-2 rounded-2xl border border-border/80 bg-surface-2/50 px-3 py-2.5 text-sm font-medium text-fg transition-all hover:border-glacier/50 hover:bg-surface-1 hover:shadow-md"
-                    >
-                      <item.icon className="text-lg text-accent" aria-hidden />
-                      {item.label}
-                    </a>
                   </li>
                 ))}
               </ul>

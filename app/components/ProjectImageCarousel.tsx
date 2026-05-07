@@ -15,7 +15,7 @@ type ProjectImageCarouselProps = {
 };
 
 const btnClass =
-  "absolute top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/90 bg-surface-1/95 text-accent shadow-sm backdrop-blur-sm opacity-0 pointer-events-none transition-[opacity,background-color,color] duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100 hover:bg-surface-2 hover:text-fg";
+  "absolute top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-border/90 bg-surface-1/95 text-fg shadow-sm backdrop-blur-sm opacity-0 pointer-events-none transition-[opacity,background-color,color] duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100 hover:bg-surface-2 hover:text-fg";
 
 export function ProjectImageCarousel({
   slides,

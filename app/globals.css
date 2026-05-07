@@ -4,24 +4,24 @@
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 
-  /* Open air: sky, snowfield, light frost */
-  --color-surface-0: #f4f9fc;
-  --color-surface-1: #ffffff;
-  --color-surface-2: #eef6f9;
-  --color-surface-3: #e2eef4;
+  /* Soft neutral grays */
+  --color-surface-0: #eaeaea;
+  --color-surface-1: #f4f4f4;
+  --color-surface-2: #d8d8d8;
+  --color-surface-3: #bbbbbb;
 
-  /* Slate-rock text — readable, not ink-black */
-  --color-fg: #2c3d47;
-  --color-fg-muted: #4d6472;
-  --color-fg-subtle: #6f8795;
+  /* Neutral dark text for strong readability */
+  --color-fg: #2d2d2d;
+  --color-fg-muted: #4b4b4b;
+  --color-fg-subtle: #666666;
 
-  /* Sky & depth blues */
-  --color-accent: #1a5f96;
-  --color-accent-dim: #3d87b8;
-  --color-glacier: #5ba8c9;
+  /* Soft yellow accent */
+  --color-accent: #ffe15d;
+  --color-accent-dim: #ffe98b;
+  --color-glacier: #ffd84d;
 
-  --color-border: #d2e6ef;
-  --color-border-strong: #b8d4e3;
+  --color-border: #cfcfcf;
+  --color-border-strong: #b8b8b8;
 }
 
 html {
@@ -41,25 +41,25 @@ body {
   color: var(--color-fg);
 }
 
-/* Bright page atmosphere: high sky + soft valley light */
+/* Light gray background */
 .outdoor-backdrop {
   min-height: 100dvh;
   background:
     radial-gradient(
       120% 75% at 100% -5%,
-      color-mix(in oklab, var(--color-glacier) 28%, transparent),
+      color-mix(in oklab, var(--color-surface-3) 55%, transparent),
       transparent 58%
     ),
     radial-gradient(
       90% 55% at -5% 105%,
-      color-mix(in oklab, var(--color-accent-dim) 16%, transparent),
+      color-mix(in oklab, var(--color-surface-2) 46%, transparent),
       transparent 52%
     ),
     linear-gradient(
       168deg,
-      #e8f4fb 0%,
-      #f6fbfe 42%,
-      #feffff 100%
+      #eaeaea 0%,
+      #efefef 42%,
+      #d8d8d8 100%
     );
 }
 
@@ -74,4 +74,66 @@ summary::-webkit-details-marker {
 
 summary {
   list-style: none;
+}
+
+.role-rotator {
+  position: relative;
+  display: block;
+  height: 1.45em;
+  min-width: min(65vw, 26rem);
+  overflow: hidden;
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--color-fg);
+}
+
+.role-rotator > span {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: translateY(45%);
+  animation: role-cycle 18s linear infinite;
+  white-space: nowrap;
+}
+
+.role-rotator > span:nth-child(2) {
+  animation-delay: 6s;
+}
+
+.role-rotator > span:nth-child(3) {
+  animation-delay: 12s;
+}
+
+@keyframes role-cycle {
+  0% {
+    opacity: 0;
+    transform: translateY(45%);
+  }
+  1.667% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  31.667% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33.3%,
+  100% {
+    opacity: 0;
+    transform: translateY(-45%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .role-rotator > span {
+    animation: none;
+    opacity: 0;
+    transform: none;
+  }
+
+  .role-rotator > span:first-child {
+    opacity: 1;
+    position: static;
+  }
 }
