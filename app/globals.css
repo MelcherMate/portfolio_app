@@ -93,16 +93,12 @@ summary {
   inset: 0;
   opacity: 0;
   transform: translateY(45%);
-  animation: role-cycle 18s linear infinite;
+  animation: role-cycle 10s linear infinite;
   white-space: nowrap;
 }
 
 .role-rotator > span:nth-child(2) {
-  animation-delay: 6s;
-}
-
-.role-rotator > span:nth-child(3) {
-  animation-delay: 12s;
+  animation-delay: 5s;
 }
 
 @keyframes role-cycle {
@@ -110,15 +106,15 @@ summary {
     opacity: 0;
     transform: translateY(45%);
   }
-  1.667% {
+  4% {
     opacity: 1;
     transform: translateY(0);
   }
-  31.667% {
+  46% {
     opacity: 1;
     transform: translateY(0);
   }
-  33.3%,
+  54%,
   100% {
     opacity: 0;
     transform: translateY(-45%);

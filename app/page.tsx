@@ -1,8 +1,13 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import {
   FaCalculator,
+  FaCube,
   FaCss3,
   FaDatabase,
+  FaDraftingCompass,
   FaEnvelope,
   FaFacebook,
   FaFlask,
@@ -13,8 +18,11 @@ import {
   FaLinkedin,
   FaMapMarkerAlt,
   FaMicrosoft,
+  FaProjectDiagram,
   FaPython,
   FaReact,
+  FaTerminal,
+  FaWater,
 } from "react-icons/fa";
 import { SiMongodb } from "react-icons/si";
 import profileImage from "../public/img/IMG_6771.png";
@@ -26,7 +34,7 @@ import { ProjectImageCarousel } from "./components/ProjectImageCarousel";
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-4 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.14em] text-fg">
+    <h2 className="mb-4 flex items-center gap-3 font-sans text-sm font-semibold uppercase tracking-[0.1em] text-fg sm:text-base">
       <span
         className="h-5 w-1.5 shrink-0 rounded-full bg-accent"
         aria-hidden
@@ -37,6 +45,26 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 function Home() {
+  type SocialId = "linkedin" | "github" | "instagram" | "facebook";
+  const [hoveredSocial, setHoveredSocial] = useState<SocialId | null>(null);
+
+  const grayDefaultSet = new Set<SocialId>(["linkedin", "facebook"]);
+
+  const getSocialBorderClass = (id: SocialId) => {
+    const isGrayDefault = grayDefaultSet.has(id);
+
+    if (!hoveredSocial) {
+      return isGrayDefault ? "border-border/80" : "border-accent";
+    }
+
+    const hoveredIsGrayDefault = grayDefaultSet.has(hoveredSocial);
+    if (hoveredIsGrayDefault) {
+      return id === hoveredSocial ? "border-accent" : "border-border/80";
+    }
+
+    return id === hoveredSocial ? "border-border/80" : "border-accent";
+  };
+
   return (
     <div className="outdoor-backdrop">
       <a
@@ -47,10 +75,10 @@ function Home() {
       </a>
 
       <main id="main">
-        <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10 lg:py-12">
+        <div className="mx-auto max-w-5xl px-4 py-4 sm:px-6 sm:py-6">
           <article
             id="top"
-            className="rounded-2xl border border-border/90 bg-surface-1/95 px-5 py-6 shadow-[0_28px_64px_-32px_rgba(40,40,40,0.16)] sm:rounded-[2rem] sm:px-10 sm:py-7"
+            className="rounded-2xl border border-border/90 bg-surface-1/95 p-5 shadow-[0_28px_64px_-32px_rgba(40,40,40,0.16)] sm:rounded-[2rem] sm:p-10"
           >
             <header className="border-b border-border/70 pb-6">
               <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-[9rem_1fr_10rem] md:gap-5">
@@ -69,37 +97,43 @@ function Home() {
                   </div>
                 </div>
                 <div className="flex min-w-0 flex-col items-center justify-center px-2 text-center md:px-4">
-                  <h1 className="text-3xl font-semibold tracking-tight text-fg sm:text-[2.1rem]">
+                  <h1 className="font-sans text-3xl font-semibold uppercase tracking-[0.1em] text-fg sm:text-[2.1rem]">
                     Máté Melcher
                   </h1>
                   <div className="mt-2 text-center">
-                    <div className="role-rotator" aria-label="Current study track">
-                      <span>Process Engineer MSc</span>
+                    <div
+                      className="role-rotator font-sans uppercase tracking-[0.1em]"
+                      aria-label="Current study track"
+                    >
                       <span>Biochemical Engineer BSc</span>
                       <span>Marketing &amp; Commerce BSc</span>
                     </div>
                   </div>
-                  <ul className="mt-3 space-y-1.5 text-sm text-fg">
+                  <ul className="mt-3 space-y-1.5 font-sans text-sm uppercase tracking-[0.1em] text-fg-subtle">
                     <li className="flex items-center justify-center gap-2">
                       <FaMapMarkerAlt className="text-xs text-fg-subtle" aria-hidden />
                       <span>Innsbruck, Austria</span>
                     </li>
                     <li className="flex items-center justify-center gap-2">
                       <FaEnvelope className="text-xs text-fg-subtle" aria-hidden />
-                      <a href="mailto:melchermate28@gmail.com" className="text-fg">
+                      <a href="mailto:melchermate28@gmail.com" className="text-fg-subtle">
                         melchermate28@gmail.com
                       </a>
                     </li>
                   </ul>
                 </div>
 
-                <div className="grid grid-cols-4 place-items-center gap-3 md:grid-cols-2">
+                <div className="ml-auto grid w-fit grid-cols-2 justify-items-end gap-3">
                   <a
                     href="https://www.linkedin.com/in/mate-melcher-5a16601bb/"
                     target="_blank"
                     rel="noreferrer"
                     aria-label="LinkedIn"
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                    onMouseEnter={() => setHoveredSocial("linkedin")}
+                    onMouseLeave={() => setHoveredSocial(null)}
+                    onFocus={() => setHoveredSocial("linkedin")}
+                    onBlur={() => setHoveredSocial(null)}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-md border bg-surface-1 text-fg transition-colors ${getSocialBorderClass("linkedin")}`}
                   >
                     <FaLinkedin className="text-2xl" aria-hidden />
                   </a>
@@ -108,7 +142,11 @@ function Home() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="GitHub"
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                    onMouseEnter={() => setHoveredSocial("github")}
+                    onMouseLeave={() => setHoveredSocial(null)}
+                    onFocus={() => setHoveredSocial("github")}
+                    onBlur={() => setHoveredSocial(null)}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-md border bg-surface-1 text-fg transition-colors ${getSocialBorderClass("github")}`}
                   >
                     <FaGithub className="text-2xl" aria-hidden />
                   </a>
@@ -117,7 +155,11 @@ function Home() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Instagram"
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                    onMouseEnter={() => setHoveredSocial("instagram")}
+                    onMouseLeave={() => setHoveredSocial(null)}
+                    onFocus={() => setHoveredSocial("instagram")}
+                    onBlur={() => setHoveredSocial(null)}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-md border bg-surface-1 text-fg transition-colors ${getSocialBorderClass("instagram")}`}
                   >
                     <FaInstagram className="text-2xl" aria-hidden />
                   </a>
@@ -126,7 +168,11 @@ function Home() {
                     target="_blank"
                     rel="noreferrer"
                     aria-label="Facebook"
-                    className="inline-flex h-14 w-14 items-center justify-center rounded-md border border-border/80 bg-surface-1 text-fg transition-colors hover:border-accent"
+                    onMouseEnter={() => setHoveredSocial("facebook")}
+                    onMouseLeave={() => setHoveredSocial(null)}
+                    onFocus={() => setHoveredSocial("facebook")}
+                    onBlur={() => setHoveredSocial(null)}
+                    className={`inline-flex h-14 w-14 items-center justify-center rounded-md border bg-surface-1 text-fg transition-colors ${getSocialBorderClass("facebook")}`}
                   >
                     <FaFacebook className="text-2xl" aria-hidden />
                   </a>
@@ -236,17 +282,15 @@ function Home() {
                 <div>
                   <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
                     <h3 className="font-semibold leading-snug text-fg">
-                      Talent Program Intern — K&amp;H Bank
+                      Co-founder &amp; General Manager — Outsider Skis
                     </h3>
                     <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
-                      2024 – 2025
+                      2025 – present
                     </span>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-fg-muted sm:text-[15px]">
-                    Rotational program across Private Banking and Corporate
-                    Finance. Strong analytical, teamwork, and problem-solving
-                    work on initiatives including the “Bank Branch of the
-                    Future” and “1 Million Project”.
+                    Reshaping the skiing world with a revolutionary solution for
+                    shape-changing skis.
                   </p>
                 </div>
                 <div>
@@ -262,6 +306,22 @@ function Home() {
                     Web-based automation for industrial equipment, cloud control
                     integrations, and database tooling for process control and
                     optimization.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
+                    <h3 className="font-semibold leading-snug text-fg">
+                      Talent Program Intern — K&amp;H Bank
+                    </h3>
+                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
+                      2024 – 2025
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-fg-muted sm:text-[15px]">
+                    Rotational program across Private Banking and Corporate
+                    Finance. Strong analytical, teamwork, and problem-solving
+                    work on initiatives including the “Bank Branch of the
+                    Future” and “1 Million Project”.
                   </p>
                 </div>
               </div>
@@ -371,10 +431,12 @@ function Home() {
                   { icon: FaCalculator, label: "MATLAB" },
                   { icon: FaDatabase, label: "PostgreSQL" },
                   { icon: FaGithub, label: "Git & GitHub" },
+                  { icon: FaProjectDiagram, label: "Simulink" },
                   { icon: FaFlask, label: "Aspen Plus" },
-                  { icon: FaMicrosoft, label: "Shapr3D" },
-                  { icon: FaReact, label: "Blender" },
-                  { icon: FaDatabase, label: "Bambu Studio" },
+                  { icon: FaDraftingCompass, label: "Shapr3D" },
+                  { icon: FaCube, label: "Blender" },
+                  { icon: FaTerminal, label: "Cursor" },
+                  { icon: FaWater, label: "ASIM 5" },
                   { icon: FaMicrosoft, label: "Microsoft 365" },
                 ].map((s) => (
                   <li key={s.label}>
@@ -393,8 +455,9 @@ function Home() {
             <section id="interests" className="scroll-mt-6 py-8">
               <SectionTitle>Interests</SectionTitle>
               <p className="text-sm leading-relaxed text-fg-muted sm:text-[15px]">
-                Heat and mass transfer · Automation · Energy storage ·
-                Biotechnology · Macroeconomics
+                Thermodynamics · Industrial automation · Energy storage ·
+                Membrane technology · Wastewater treatment · Solid process engineering
+                · Software development · Macroeconomics
               </p>
             </section>
           </article>
