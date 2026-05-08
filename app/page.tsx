@@ -123,7 +123,7 @@ function Home() {
                   </ul>
                 </div>
 
-                <div className="ml-auto grid w-fit grid-cols-2 justify-items-end gap-3">
+                <div className="mx-auto grid w-fit grid-cols-4 gap-3 md:ml-auto md:grid-cols-2 md:justify-items-end">
                   <a
                     href="https://www.linkedin.com/in/mate-melcher-5a16601bb/"
                     target="_blank"
