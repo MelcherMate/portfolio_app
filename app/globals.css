@@ -79,13 +79,21 @@ summary {
 .role-rotator {
   position: relative;
   display: block;
+  width: 100%;
   height: 1.45em;
-  min-width: min(65vw, 26rem);
+  min-width: 0;
   overflow: hidden;
   font-size: 0.98rem;
   font-weight: 600;
   line-height: 1.45;
   color: var(--color-fg);
+}
+
+@media (min-width: 640px) {
+  .role-rotator {
+    width: auto;
+    min-width: min(65vw, 26rem);
+  }
 }
 
 .role-rotator > span {

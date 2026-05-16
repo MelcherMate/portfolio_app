@@ -96,13 +96,13 @@ function Home() {
                     />
                   </div>
                 </div>
-                <div className="flex min-w-0 flex-col items-center justify-center px-2 text-center md:px-4">
+                <div className="flex min-w-0 w-full flex-col items-center justify-center px-0 text-center sm:px-2 md:px-4">
                   <h1 className="font-sans text-3xl font-semibold uppercase tracking-[0.1em] text-fg sm:text-[2.1rem]">
                     Máté Melcher
                   </h1>
-                  <div className="mt-2 text-center">
+                  <div className="mt-2 w-full text-center">
                     <div
-                      className="role-rotator font-sans uppercase tracking-[0.1em]"
+                      className="role-rotator mx-auto font-sans uppercase tracking-[0.1em]"
                       aria-label="Current study track"
                     >
                       <span>Biochemical Engineer BSc</span>
