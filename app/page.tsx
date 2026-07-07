@@ -336,6 +336,19 @@ function Home() {
                 <li>
                   <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
                     <h3 className="font-semibold text-fg">
+                      University of California, Berkeley
+                    </h3>
+                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
+                      2026
+                    </span>
+                  </div>
+                  <p className="mt-1 text-sm text-fg-muted">
+                    Entrepreneurship and Leveraging AI summer courses
+                  </p>
+                </li>
+                <li>
+                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
+                    <h3 className="font-semibold text-fg">
                       MCI Management Center Innsbruck
                     </h3>
                     <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
