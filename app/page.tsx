@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   FaCalculator,
   FaCube,
@@ -30,7 +30,122 @@ import bioverseeScreenshot from "../public/img/bioversee.png";
 import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
 import smartGridApp2 from "../public/img/smartgridapp2.png";
+import ucBerkeleySeal from "../public/img/logos/uc-berkeley-seal.svg";
+import mciLogo from "../public/img/logos/mci-logo.svg";
+import universityOfDebrecenLogo from "../public/img/logos/university-of-debrecen-logo.png";
 import { ProjectImageCarousel } from "./components/ProjectImageCarousel";
+import type { StaticImageData } from "next/image";
+
+function EducationEntry({
+  icon,
+  iconAlt,
+  title,
+  date,
+  children,
+}: {
+  icon: StaticImageData;
+  iconAlt: string;
+  title: string;
+  date: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <li>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+        <div className="flex min-w-0 gap-3">
+          <div className="relative mt-0.5 h-12 w-12 shrink-0">
+            <Image
+              src={icon}
+              alt={iconAlt}
+              fill
+              className="object-contain"
+            />
+          </div>
+          <div className="min-w-0">
+            <h3 className="font-semibold text-fg">{title}</h3>
+            {children}
+          </div>
+        </div>
+        <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
+          {date}
+        </span>
+      </div>
+    </li>
+  );
+}
+
+function ThesisDownloadDialog({
+  open,
+  onClose,
+  onConfirm,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}) {
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
+
+  if (!open) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+      <button
+        type="button"
+        className="absolute inset-0 cursor-pointer bg-fg/15"
+        aria-label="Close dialog"
+        onClick={onClose}
+      />
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bioeng-thesis-dialog-title"
+        className="relative w-full max-w-sm rounded-2xl border border-border/90 bg-surface-1 p-5 shadow-[0_28px_64px_-32px_rgba(40,40,40,0.24)]"
+      >
+        <h3
+          id="bioeng-thesis-dialog-title"
+          className="text-sm font-semibold text-fg"
+        >
+          Download thesis?
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-fg-muted">
+          This thesis is written in Hungarian. Would you like to download it
+          anyway?
+        </p>
+        <div className="mt-4 flex justify-end gap-2">
+          <button
+            type="button"
+            onClick={onClose}
+            className="cursor-pointer rounded-full border border-border/80 bg-surface-1 px-4 py-2 text-sm font-medium text-fg-muted transition-colors hover:text-fg"
+          >
+            Cancel
+          </button>
+          <button
+            type="button"
+            onClick={onConfirm}
+            className="cursor-pointer rounded-full bg-accent px-4 py-2 text-sm font-semibold text-fg transition-opacity hover:opacity-90"
+          >
+            Download
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
@@ -47,6 +162,18 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 function Home() {
   type SocialId = "linkedin" | "github" | "instagram" | "facebook";
   const [hoveredSocial, setHoveredSocial] = useState<SocialId | null>(null);
+  const [bioengThesisDialogOpen, setBioengThesisDialogOpen] = useState(false);
+
+  const downloadBioengThesis = () => {
+    const link = document.createElement("a");
+    link.href = "/docs/bioengineering-thesis.pdf";
+    link.download =
+      "Use of Saccharomyces bayanus and S. pombe in cider making.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setBioengThesisDialogOpen(false);
+  };
 
   const grayDefaultSet = new Set<SocialId>(["linkedin", "facebook"]);
 
@@ -333,64 +460,66 @@ function Home() {
             >
               <SectionTitle>Education</SectionTitle>
               <ul className="space-y-5">
-                <li>
-                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                    <h3 className="font-semibold text-fg">
-                      University of California, Berkeley
-                    </h3>
-                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
-                      2026
-                    </span>
-                  </div>
+                <EducationEntry
+                  icon={ucBerkeleySeal}
+                  iconAlt="University of California, Berkeley seal"
+                  title="University of California, Berkeley"
+                  date="In progress"
+                >
                   <p className="mt-1 text-sm text-fg-muted">
                     Entrepreneurship and Leveraging AI summer courses
                   </p>
-                </li>
-                <li>
-                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                    <h3 className="font-semibold text-fg">
-                      MCI Management Center Innsbruck
-                    </h3>
-                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
-                      In progress
-                    </span>
-                  </div>
+                </EducationEntry>
+                <EducationEntry
+                  icon={mciLogo}
+                  iconAlt="MCI Management Center Innsbruck logo"
+                  title="MCI Management Center Innsbruck"
+                  date="In progress"
+                >
                   <p className="mt-1 text-sm text-fg-muted">
                     MSc, Environmental, Process and Energy Engineering
                   </p>
                   <p className="mt-1 text-sm text-fg-subtle">Thesis: TBD</p>
-                </li>
-                <li>
-                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                    <h3 className="font-semibold text-fg">
-                      University of Debrecen
-                    </h3>
-                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
-                      2025
-                    </span>
-                  </div>
+                </EducationEntry>
+                <EducationEntry
+                  icon={universityOfDebrecenLogo}
+                  iconAlt="University of Debrecen emblem"
+                  title="University of Debrecen"
+                  date="2025"
+                >
                   <p className="mt-1 text-sm text-fg-muted">
                     BSc, Marketing &amp; Commerce
                   </p>
                   <p className="mt-1 text-sm text-fg-subtle">
-                    Thesis: Bioversee — A Startup for Industrial Automation
+                    Thesis:{" "}
+                    <a
+                      href="/docs/bioversee-thesis.pdf"
+                      download="Bioversee — A Startup for Industrial Automation.pdf"
+                      className="underline-offset-2 transition-colors hover:text-fg-muted hover:underline"
+                    >
+                      Bioversee — A Startup for Industrial Automation
+                    </a>
                   </p>
-                </li>
-                <li>
-                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
-                    <h3 className="font-semibold text-fg">
-                      University of Debrecen
-                    </h3>
-                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:text-sm">
-                      2023
-                    </span>
-                  </div>
+                </EducationEntry>
+                <EducationEntry
+                  icon={universityOfDebrecenLogo}
+                  iconAlt="University of Debrecen emblem"
+                  title="University of Debrecen"
+                  date="2023"
+                >
                   <p className="mt-1 text-sm text-fg-muted">BSc, Bioengineering</p>
                   <p className="mt-1 text-sm text-fg-subtle">
-                    Thesis: Use of <i>Saccharomyces bayanus</i> and{" "}
-                    <i>S. pombe</i> in cider making
+                    Thesis:{" "}
+                    <button
+                      type="button"
+                      onClick={() => setBioengThesisDialogOpen(true)}
+                      className="cursor-pointer text-left underline-offset-2 transition-colors hover:text-fg-muted hover:underline"
+                    >
+                      Use of <i>Saccharomyces bayanus</i> and <i>S. pombe</i> in
+                      cider making
+                    </button>
                   </p>
-                </li>
+                </EducationEntry>
               </ul>
             </section>
 
@@ -476,6 +605,12 @@ function Home() {
           </article>
         </div>
       </main>
+
+      <ThesisDownloadDialog
+        open={bioengThesisDialogOpen}
+        onClose={() => setBioengThesisDialogOpen(false)}
+        onConfirm={downloadBioengThesis}
+      />
 
       <footer className="border-t border-border/60 py-6">
         <p className="text-center text-xs text-fg-subtle">
