@@ -416,8 +416,7 @@ function Home() {
                     </span>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-fg-muted sm:text-[15px]">
-                    Reshaping the skiing world with a revolutionary solution for
-                    shape-changing skis.
+                    Inventing the future of skiing.
                   </p>
                 </div>
                 <div>
