@@ -6,7 +6,6 @@ import {
   FaCalculator,
   FaCube,
   FaCss3,
-  FaDatabase,
   FaDraftingCompass,
   FaEnvelope,
   FaFacebook,
@@ -24,14 +23,20 @@ import {
   FaTerminal,
   FaWater,
 } from "react-icons/fa";
-import { SiMongodb } from "react-icons/si";
+import { SiMongodb, SiOverleaf, SiSupabase, SiVercel } from "react-icons/si";
 import profileImage from "../public/img/IMG_6771.png";
 import bioverseeScreenshot from "../public/img/bioversee.png";
 import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
 import smartGridApp2 from "../public/img/smartgridapp2.png";
+import lineceptTimeline from "../public/img/linecept-timeline.jpg";
+import lineceptGemini from "../public/img/linecept-gemini.jpg";
+import lineceptAgentic from "../public/img/linecept-agentic.jpg";
+import lineceptKanban from "../public/img/linecept-kanban.jpg";
+import lineceptCards from "../public/img/linecept-cards.jpg";
 import ucBerkeleySeal from "../public/img/logos/uc-berkeley-seal.svg";
 import mciLogo from "../public/img/logos/mci-logo.svg";
+import lineceptLogo from "../public/img/logos/linecept-logo.png";
 import universityOfDebrecenLogo from "../public/img/logos/university-of-debrecen-logo.png";
 import { ProjectImageCarousel } from "./components/ProjectImageCarousel";
 import type { StaticImageData } from "next/image";
@@ -331,6 +336,60 @@ function Home() {
               <div className="mt-2 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 sm:gap-5">
                 <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
                   <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
+                    <Image
+                      src={lineceptLogo}
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                      aria-hidden
+                    />
+                    Linecept
+                  </h3>
+                  <ProjectImageCarousel
+                    key="linecept-jpgs"
+                    slides={[
+                      {
+                        src: lineceptGemini,
+                        alt: "Linecept timeline of the Gemini Program, with nested Mission Control workstreams",
+                      },
+                      {
+                        src: lineceptAgentic,
+                        alt: "Linecept Agentic Management dashboard for the Apollo Program, with scores, sentiment, and timeline summaries",
+                      },
+                      {
+                        src: lineceptTimeline,
+                        alt: "Linecept timeline view of the Apollo Program, with color-coded workstreams and progress",
+                      },
+                      {
+                        src: lineceptKanban,
+                        alt: "Linecept Collector board with status columns and a stats sidebar",
+                      },
+                      {
+                        src: lineceptCards,
+                        alt: "Linecept cards for updates, photos, milestones, and blocked work",
+                      },
+                    ]}
+                  />
+                  <p className="text-sm leading-relaxed text-fg-muted sm:text-[15px]">
+                    This summer I joined my friend David to help build Linecept,
+                    a project management platform that puts visualization first.
+                    We believe you can only oversee a process if you can actually
+                    see it. Timelines, boards, and cards make the work readable
+                    at a glance.
+                  </p>
+                  <a
+                    href="https://www.linecept.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-fg transition-opacity hover:opacity-90"
+                  >
+                    Visit site
+                  </a>
+                </article>
+
+                <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
+                  <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
                     <FaFlask className="text-lg text-fg" aria-hidden />
                     Bioversee
                   </h3>
@@ -409,6 +468,20 @@ function Home() {
                 <div>
                   <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
                     <h3 className="font-semibold leading-snug text-fg">
+                      Co-founder — Linecept
+                    </h3>
+                    <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
+                      2026 – present
+                    </span>
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-fg-muted sm:text-[15px]">
+                    Building a visualization-first project management platform
+                    so teams can actually see the work and oversee the process.
+                  </p>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-0.5 sm:flex-row sm:justify-between sm:gap-4">
+                    <h3 className="font-semibold leading-snug text-fg">
                       Co-founder &amp; General Manager — Outsider Skis
                     </h3>
                     <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
@@ -425,7 +498,7 @@ function Home() {
                       Founder &amp; Full-Stack Developer — Bioversee
                     </h3>
                     <span className="shrink-0 font-mono text-xs tabular-nums text-fg-subtle sm:pt-0.5 sm:text-sm">
-                      2024 – present
+                      2024 – 2026
                     </span>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed text-fg-muted sm:text-[15px]">
@@ -460,16 +533,6 @@ function Home() {
               <SectionTitle>Education</SectionTitle>
               <ul className="space-y-5">
                 <EducationEntry
-                  icon={ucBerkeleySeal}
-                  iconAlt="University of California, Berkeley seal"
-                  title="University of California, Berkeley"
-                  date="In progress"
-                >
-                  <p className="mt-1 text-sm text-fg-muted">
-                    Entrepreneurship and Leveraging AI summer courses
-                  </p>
-                </EducationEntry>
-                <EducationEntry
                   icon={mciLogo}
                   iconAlt="MCI Management Center Innsbruck logo"
                   title="MCI Management Center Innsbruck"
@@ -479,6 +542,16 @@ function Home() {
                     MSc, Environmental, Process and Energy Engineering
                   </p>
                   <p className="mt-1 text-sm text-fg-subtle">Thesis: TBD</p>
+                </EducationEntry>
+                <EducationEntry
+                  icon={ucBerkeleySeal}
+                  iconAlt="University of California, Berkeley seal"
+                  title="University of California, Berkeley"
+                  date="2026"
+                >
+                  <p className="mt-1 text-sm text-fg-muted">
+                    Entrepreneurship and Leveraging AI summer courses
+                  </p>
                 </EducationEntry>
                 <EducationEntry
                   icon={universityOfDebrecenLogo}
@@ -569,8 +642,10 @@ function Home() {
                   { icon: FaCss3, label: "CSS" },
                   { icon: SiMongodb, label: "MongoDB" },
                   { icon: FaReact, label: "React" },
+                  { icon: SiVercel, label: "Vercel" },
+                  { icon: SiSupabase, label: "Supabase" },
                   { icon: FaCalculator, label: "MATLAB" },
-                  { icon: FaDatabase, label: "PostgreSQL" },
+                  { icon: SiOverleaf, label: "Overleaf" },
                   { icon: FaGithub, label: "Git & GitHub" },
                   { icon: FaProjectDiagram, label: "Simulink" },
                   { icon: FaFlask, label: "Aspen Plus" },
