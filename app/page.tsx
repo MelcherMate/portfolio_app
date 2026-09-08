@@ -29,11 +29,11 @@ import bioverseeScreenshot from "../public/img/bioversee.png";
 import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
 import smartGridApp2 from "../public/img/smartgridapp2.png";
-import lineceptTimeline from "../public/img/linecept-timeline.jpg";
-import lineceptGemini from "../public/img/linecept-gemini.jpg";
-import lineceptAgentic from "../public/img/linecept-agentic.jpg";
-import lineceptKanban from "../public/img/linecept-kanban.jpg";
-import lineceptCards from "../public/img/linecept-cards.jpg";
+import lineceptCanvas from "../public/img/linecept-slide-canvas.jpg";
+import lineceptCollector from "../public/img/linecept-slide-collector.jpg";
+import lineceptAgentic from "../public/img/linecept-slide-agentic.jpg";
+import outsiderLogo from "../public/img/outsider-logo.jpg";
+import outsiderMark from "../public/img/logos/outsider-mark.png";
 import ucBerkeleySeal from "../public/img/logos/uc-berkeley-seal.svg";
 import mciLogo from "../public/img/logos/mci-logo.svg";
 import lineceptLogo from "../public/img/logos/linecept-logo.png";
@@ -347,27 +347,20 @@ function Home() {
                     Linecept
                   </h3>
                   <ProjectImageCarousel
-                    key="linecept-jpgs"
+                    key="linecept-slides-v2"
+                    priority
                     slides={[
                       {
-                        src: lineceptGemini,
-                        alt: "Linecept timeline of the Gemini Program, with nested Mission Control workstreams",
+                        src: lineceptCanvas,
+                        alt: "Linecept canvas timeline with chat sidebar",
+                      },
+                      {
+                        src: lineceptCollector,
+                        alt: "Linecept Collector board with status columns and stats",
                       },
                       {
                         src: lineceptAgentic,
-                        alt: "Linecept Agentic Management dashboard for the Apollo Program, with scores, sentiment, and timeline summaries",
-                      },
-                      {
-                        src: lineceptTimeline,
-                        alt: "Linecept timeline view of the Apollo Program, with color-coded workstreams and progress",
-                      },
-                      {
-                        src: lineceptKanban,
-                        alt: "Linecept Collector board with status columns and a stats sidebar",
-                      },
-                      {
-                        src: lineceptCards,
-                        alt: "Linecept cards for updates, photos, milestones, and blocked work",
+                        alt: "Linecept Agentic Management dashboard with metrics and timelines",
                       },
                     ]}
                   />
@@ -380,6 +373,43 @@ function Home() {
                   </p>
                   <a
                     href="https://www.linecept.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-fg transition-opacity hover:opacity-90"
+                  >
+                    Visit site
+                  </a>
+                </article>
+
+                <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
+                  <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
+                    <Image
+                      src={outsiderMark}
+                      alt=""
+                      width={24}
+                      height={24}
+                      className="h-6 w-6"
+                      aria-hidden
+                    />
+                    Outsider Skis
+                  </h3>
+                  <ProjectImageCarousel
+                    slides={[
+                      {
+                        src: outsiderLogo,
+                        alt: "Outsider Skis logo centered on a topographic dark background",
+                      },
+                    ]}
+                  />
+                  <p className="text-sm leading-relaxed text-fg-muted sm:text-[15px]">
+                    I&apos;ve been skiing since I was three. With conditions
+                    changing so fast on the mountain, I sometimes have to come
+                    down midday just to switch skis. With Outsider Skis, we
+                    believe there&apos;s a better way: always having the right
+                    skis for the conditions you&apos;re in.
+                  </p>
+                  <a
+                    href="https://www.outsider-skis.com/"
                     target="_blank"
                     rel="noreferrer"
                     className="mt-auto inline-flex w-fit items-center justify-center rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-fg transition-opacity hover:opacity-90"

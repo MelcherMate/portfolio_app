@@ -35,6 +35,10 @@ export function ProjectImageCarousel({
   }, [count]);
 
   useEffect(() => {
+    setIndex(0);
+  }, [count]);
+
+  useEffect(() => {
     if (!showNav) return undefined;
     const id = window.setInterval(() => {
       if (!pauseAutoplayRef.current) {
@@ -44,13 +48,14 @@ export function ProjectImageCarousel({
     return () => window.clearInterval(id);
   }, [count, showNav]);
 
-  const safeCount = Math.max(count, 1);
-  const slidePercent = 100 / safeCount;
+  if (count === 0) {
+    return null;
+  }
 
   return (
     <div
       tabIndex={showNav ? 0 : undefined}
-      className="group relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-surface-1 outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      className="group relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/60 bg-surface-2 outline-none focus-visible:ring-2 focus-visible:ring-accent"
       onMouseEnter={() => {
         pauseAutoplayRef.current = true;
       }}
@@ -70,31 +75,23 @@ export function ProjectImageCarousel({
       role={showNav ? "region" : undefined}
       aria-label={showNav ? "Slideshow" : undefined}
     >
-      <div
-        className="flex h-full transition-transform duration-700 ease-in-out motion-reduce:transition-none"
-        style={{
-          width: `${count * 100}%`,
-          transform: `translateX(-${slidePercent * index}%)`,
-        }}
-      >
-        {slides.map((slide, i) => (
-          <div
-            key={i}
-            className="relative h-full shrink-0 overflow-hidden"
-            style={{ width: `${slidePercent}%` }}
-            aria-hidden={i !== index}
-          >
-            <Image
-              src={slide.src}
-              alt={slide.alt}
-              fill
-              priority={priority && i === 0}
-              sizes="(max-width: 639px) 100vw, 360px"
-              className="object-cover object-top"
-            />
-          </div>
-        ))}
-      </div>
+      {slides.map((slide, i) => (
+        <div
+          key={`${slide.alt}-${i}`}
+          className="absolute inset-0 transition-transform duration-700 ease-in-out motion-reduce:transition-none"
+          style={{ transform: `translateX(${(i - index) * 100}%)` }}
+          aria-hidden={i !== index}
+        >
+          <Image
+            src={slide.src}
+            alt={slide.alt}
+            fill
+            priority={priority && i === 0}
+            sizes="(max-width: 639px) 100vw, 360px"
+            className="object-cover object-center"
+          />
+        </div>
+      ))}
 
       {showNav && (
         <>
