@@ -322,9 +322,9 @@ function Home() {
                 After working as an economist at a multinational
                 company, I returned to engineering and am pursuing an MSc in
                 Environmental, Process and Energy Engineering at MCI Innsbruck,
-                focusing on wastewater treatment and practical process engineering challenges. I
-                believe engineering should improve lives and make economic
-                sense.
+                focusing on hybrid membrane technology, CFD and practical process
+                engineering challenges in the industrial automation industry. I like
+                to be busy in my free time and I always find ways to improve myself.
               </p>
             </section>
 
