@@ -7,6 +7,12 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 export type ProjectCarouselSlide = {
   src: StaticImageData;
   alt: string;
+  type?: "image";
+} | {
+  src: string;
+  alt: string;
+  poster?: StaticImageData;
+  type: "video";
 };
 
 type ProjectImageCarouselProps = {
@@ -24,7 +30,9 @@ export function ProjectImageCarousel({
   const [index, setIndex] = useState(0);
   const count = slides.length;
   const showNav = count > 1;
+  const showingVideo = slides[index]?.type === "video";
   const pauseAutoplayRef = useRef(false);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const goPrev = useCallback(() => {
     setIndex((i) => (i - 1 + count) % count);
@@ -39,14 +47,25 @@ export function ProjectImageCarousel({
   }, [count]);
 
   useEffect(() => {
+    videoRefs.current.forEach((video, i) => {
+      if (!video) return;
+      if (i === index) {
+        void video.play().catch(() => undefined);
+      } else {
+        video.pause();
+      }
+    });
+  }, [index]);
+
+  useEffect(() => {
     if (!showNav) return undefined;
     const id = window.setInterval(() => {
-      if (!pauseAutoplayRef.current) {
+      if (!pauseAutoplayRef.current && !showingVideo) {
         setIndex((i) => (i + 1) % count);
       }
     }, 5000);
     return () => window.clearInterval(id);
-  }, [count, showNav]);
+  }, [count, showNav, showingVideo]);
 
   if (count === 0) {
     return null;
@@ -82,14 +101,30 @@ export function ProjectImageCarousel({
           style={{ transform: `translateX(${(i - index) * 100}%)` }}
           aria-hidden={i !== index}
         >
-          <Image
-            src={slide.src}
-            alt={slide.alt}
-            fill
-            priority={priority && i === 0}
-            sizes="(max-width: 639px) 100vw, 360px"
-            className="object-cover object-center"
-          />
+          {slide.type === "video" ? (
+            <video
+              ref={(video) => {
+                videoRefs.current[i] = video;
+              }}
+              src={slide.src}
+              aria-label={slide.alt}
+              poster={slide.poster?.src}
+              autoPlay={i === index}
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover object-center"
+            />
+          ) : (
+            <Image
+              src={slide.src}
+              alt={slide.alt}
+              fill
+              priority={priority && i === 0}
+              sizes="(max-width: 639px) 100vw, 360px"
+              className="object-cover object-center"
+            />
+          )}
         </div>
       ))}
 

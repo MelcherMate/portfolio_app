@@ -25,7 +25,6 @@ import {
 } from "react-icons/fa";
 import { SiMongodb, SiOverleaf, SiSupabase, SiVercel } from "react-icons/si";
 import profileImage from "../public/img/IMG_6771.png";
-import bioverseeScreenshot from "../public/img/bioversee.png";
 import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
 import smartGridApp2 from "../public/img/smartgridapp2.png";
@@ -418,7 +417,7 @@ function Home() {
                   </a>
                 </article>
 
-                <article className="flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
+                <article className="order-first flex h-full min-h-0 min-w-0 flex-col gap-4 rounded-2xl border border-border/80 bg-surface-2/50 p-4 sm:p-5">
                   <h3 className="flex items-center gap-2 text-base font-semibold text-fg">
                     <FaFlask className="text-lg text-fg" aria-hidden />
                     Bioversee
@@ -427,13 +426,15 @@ function Home() {
                     priority
                     slides={[
                       {
-                        src: bioverseeScreenshot,
+                        src: bioverseeScreenshot2,
                         alt:
                           "Bioversee dashboard: bioreactor schematic, pump and agitator controls, and temperature and pH charts",
                       },
                       {
-                        src: bioverseeScreenshot2,
-                        alt: "Bioversee dashboard — second view",
+                        type: "video",
+                        src: "/img/bioversee-reactor-control.mp4",
+                        poster: bioverseeScreenshot2,
+                        alt: "Bioversee reactor control surface with live process animation",
                       },
                     ]}
                   />
