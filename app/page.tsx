@@ -25,7 +25,6 @@ import {
 } from "react-icons/fa";
 import { SiMongodb, SiOverleaf, SiSupabase, SiVercel } from "react-icons/si";
 import profileImage from "../public/img/IMG_6771.png";
-import bioverseeScreenshot2 from "../public/img/bioversee2.png";
 import smartGridApp1 from "../public/img/smartgridapp1.png";
 import smartGridApp2 from "../public/img/smartgridapp2.png";
 import lineceptCanvas from "../public/img/linecept-slide-canvas.jpg";
@@ -423,17 +422,10 @@ function Home() {
                     Bioversee
                   </h3>
                   <ProjectImageCarousel
-                    priority
                     slides={[
-                      {
-                        src: bioverseeScreenshot2,
-                        alt:
-                          "Bioversee dashboard: bioreactor schematic, pump and agitator controls, and temperature and pH charts",
-                      },
                       {
                         type: "video",
                         src: "/img/bioversee-reactor-control.mp4",
-                        poster: bioverseeScreenshot2,
                         alt: "Bioversee reactor control surface with live process animation",
                       },
                     ]}
